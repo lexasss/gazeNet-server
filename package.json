@@ -9,7 +9,7 @@
     "type": "git",
     "url": "https://github.com/lexasss/gazeNet.git"
   },
-  "main": "/.bin/www",
+  "main": "./app.js",
   "config": {
     "web": {
       "host": "localhost",
