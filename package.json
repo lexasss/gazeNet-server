@@ -1,48 +1,25 @@
 {
-  "name": "gazeNet",
-  "version": "0.0.1",
-  "description": "A server to shares gaze data over the net",
-  "author": "github.com/lexasss",
-  "keywords": "eye gaze data event sharing",
-  "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/lexasss/gazeNet.git"
-  },
-  "main": "./app.js",
-  "config": {
-    "web": {
-      "host": "localhost",
-      "port": 8080
-    },
-    "db": {
-      "path": "C:\\mongodb\\bin\\mongod.exe",
-      "host": "localhost",
-      "port": 27017,
-      "name": "gazenet"
-    }
-  },
-  "scripts": {
-    "run": "node app.js",
-    "start": "grunt && db && (start grunt watch & node ./bin/www)",
-    "production": "set NODE_ENV=production && db && node ./bin/www"
-  },
-  "dependencies": {
-    "ws": "~0.4.32"
-  },
-  "devDependencies": {
-  },
-
-
-  "old-dependencies": {
-    "express": "~4.8.6",
-    "body-parser": "~1.6.6",
-    "cookie-parser": "~1.3.2",
-    "morgan": "~1.2.3",
-    "serve-favicon": "~2.0.1",
-    "jade": "~1.11.0",
-    "ws": "~0.4.32",
-    "mongodb": "~2.0.33",
-    "monk": "~1.0.1"
-  }  
+	"name": "gazeNetServer",
+	"version": "1.0.0",
+	"description": "A server to share gaze data over the net",
+	"author": "Oleg Špakov @ Universty of Tampere",
+	"keywords": "eye gaze data sharing",
+	"license": "MIT",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/lexasss/gazeNet.git"
+	},
+	"main": "./app.js",
+	"config": {
+		"web": {
+			"host": "localhost",
+			"port": 8080
+		}
+	},
+	"scripts": {
+		"start": "node app.js"
+	},
+	"dependencies": {
+		"ws": "~0.4.32"
+	}
 }

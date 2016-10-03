@@ -1,1 +1,1 @@
-cmd /k npm run production
+npm start
