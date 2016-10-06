@@ -29,7 +29,7 @@ let clients = {};
 
 /** Implemenetation **/
 
-setInterval( displayWhoIsOnline, 5000 );
+//setInterval( displayWhoIsOnline, 5000 );
 
 wss.on( 'connection', function (ws) {
 
@@ -41,6 +41,8 @@ wss.on( 'connection', function (ws) {
 	};
 
 	clients[ id ] = client;
+    
+    displayWhoIsOnline();
 
 	//var session;
 
@@ -173,9 +175,9 @@ function displayWhoIsOnline() {
 		names.push( clients[ id ].name );
 	}
 
-	//if (names.length) {
+	if (names.length) {
 		console.log( time() + ' ONLINE: ' + names.join( ', ' ) );
-	//}
+	}
 }
 
 function time() {
