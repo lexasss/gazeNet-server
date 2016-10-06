@@ -1,25 +1,25 @@
 {
-	"name": "gazeNetServer",
-	"version": "1.0.0",
-	"description": "A server to share gaze data over the net",
-	"author": "Oleg Špakov @ Universty of Tampere",
-	"keywords": "eye gaze data sharing",
-	"license": "MIT",
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/lexasss/gazeNet.git"
-	},
-	"main": "./app.js",
-	"config": {
-		"web": {
-			"host": "localhost",
-			"port": 8080
-		}
-	},
-	"scripts": {
-		"start": "node app.js"
-	},
-	"dependencies": {
-		"ws": "~0.4.32"
-	}
+  "name": "gazeNetServer",
+  "version": "1.0.0",
+  "description": "A server to share gaze data over the net",
+  "author": "Oleg Špakov @ Universty of Tampere",
+  "keywords": "eye gaze data sharing",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/uta-gasp/gazenet-server.git"
+  },
+  "main": "./app.js",
+  "config": {
+    "web": {
+      "host": "localhost",
+      "port": 8080
+    }
+  },
+  "scripts": {
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "ws": "~0.4.32"
+  }
 }

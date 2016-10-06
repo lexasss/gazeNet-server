@@ -29,6 +29,8 @@ let clients = {};
 
 /** Implemenetation **/
 
+setInterval( displayWhoIsOnline, 5000 );
+
 wss.on( 'connection', function (ws) {
 
 	const id = 'ID_' + (++lastID);
@@ -45,10 +47,10 @@ wss.on( 'connection', function (ws) {
 	const print = function (log, skipID) {
 		if (log instanceof Array) {
 			let intro = skipID ? '\t\t' : '[ ' + id + ' ] ';
-			console.log( intro + log.join( '\n\t\t' ) ) ;
+			console.log( time() + intro + log.join( '\n\t\t' ) ) ;
 		}
 		else {
-			console.log( (skipID ? '' : '[ ' + id + ' ] ') + log) ;
+			console.log( (time() + skipID ? '' : '[ ' + id + ' ] ') + log) ;
 		}
 	};
 
@@ -129,9 +131,10 @@ wss.on( 'connection', function (ws) {
 					print( `Failed to send data from ${data.from}:\n${err.message}` );
 				}
 			});
-		} else {
-			print( 'data topic "' + data.topic + '" is not in the list of topics: ' + topics );
 		}
+		// else {
+		// 	print( 'data topic "' + data.topic + '" is not in the list of topics: ' + topics );
+		// }
 	};
 
 	messageBus.on( 'message', wsListener );
@@ -142,7 +145,7 @@ wss.on( 'connection', function (ws) {
 			json = JSON.parse( data );
 		}
 		catch (ex) {
-			print( '    ...not a valid JSON' );
+			print( '    ...not a valid JSON: ' + data );
 			return;
 		}
 
@@ -157,13 +160,27 @@ wss.on( 'connection', function (ws) {
 
 	ws.on( 'close', function () {
 		messageBus.removeListener( 'message', wsListener );
-		print( 'disconnected' );
+		print( client.name + 'disconnected' );
 		delete clients[ id ];
 	});
 
 	print( 'connected' );
 });
 
+function displayWhoIsOnline() {
+	let names = [];
+	for (let id in clients) {
+		names.push( clients[ id ].name );
+	}
+
+	//if (names.length) {
+		console.log( time() + ' ONLINE: ' + names.join( ', ' ) );
+	//}
+}
+
+function time() {
+	return new Date().toLocaleTimeString( 'fi-FI', { hour12: false } );
+}
 
 /*
 const EMULATION_DATA = [ ];
