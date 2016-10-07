@@ -51,7 +51,7 @@ wss.on( 'connection', function (ws) {
 			console.log( time() + intro + log.join( '\n\t\t' ) ) ;
 		}
 		else {
-			console.log( (time() + skipID ? '' : '[ ' + id + ' ] ') + log) ;
+			console.log( time() + (skipID ? '' : '[ ' + id + ' ] ') + log) ;
 		}
 	};
 
