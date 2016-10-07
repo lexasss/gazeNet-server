@@ -161,7 +161,7 @@ wss.on( 'connection', function (ws) {
 
 	ws.on( 'close', function () {
 		messageBus.removeListener( 'message', wsListener );
-		print( client.name + 'disconnected' );
+		print( client.name + ' disconnected' );
 		delete clients[ id ];
         displayWhoIsOnline();
 	});
