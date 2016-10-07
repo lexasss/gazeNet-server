@@ -82,6 +82,8 @@ wss.on( 'connection', function (ws) {
 		if (SIMULATE) {
 			setTimeout( emulateCommands, 3000, ws);
 		}
+        
+        displayWhoIsOnline();
 	};
 
 	const parseEvent = function (data) {
@@ -167,7 +169,6 @@ wss.on( 'connection', function (ws) {
 	});
 
 	print( 'connected' );
-    displayWhoIsOnline();
 });
 
 function displayWhoIsOnline() {
@@ -179,15 +180,15 @@ function displayWhoIsOnline() {
     if (names.length > DISPLAY_NAMES_MAX_COUNT) {
         let total = names.length;
         names.length = DISPLAY_NAMES_MAX_COUNT;
-        console.log( time() + ' ONLINE: ' + names.join( ', ' ) + ', and ' + (total - DISPLAY_NAMES_MAX_COUNT) + ' more' );
+        console.log( time() + 'ONLINE: ' + names.join( ', ' ) + ', and ' + (total - DISPLAY_NAMES_MAX_COUNT) + ' more' );
     }
     else {
-        console.log( time() + ' ONLINE: ' + (names.length ? names.join( ', ' ) : 'nobody' ) );
+        console.log( time() + 'ONLINE: ' + (names.length ? names.join( ', ' ) : 'nobody' ) );
     }
 }
 
 function time() {
-	return new Date().toLocaleTimeString( 'fi-FI', { hour12: false } );
+	return new Date().toLocaleTimeString( 'fi-FI', { hour12: false } ) + ' ';
 }
 
 /*
