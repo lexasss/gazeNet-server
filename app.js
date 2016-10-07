@@ -69,6 +69,7 @@ wss.on( 'connection', function (ws) {
 		client.name = config.name ? config.name : id;
 
 		print([
+            'config:',
 			'topics = ' + JSON.stringify( config.topics ),
 			'role = ' + roles[ client.role ],
 			'name = ' + client.name
