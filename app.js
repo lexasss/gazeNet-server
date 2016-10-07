@@ -11,6 +11,7 @@ const EventEmitter = require( 'events' ).EventEmitter;
 /** Parameters **/
 
 const SIMULATE = false;
+const DISPLAY_NAMES_MAX_COUNT = 5;
 
 
 /** Initialization **/
@@ -42,8 +43,6 @@ wss.on( 'connection', function (ws) {
 
 	clients[ id ] = client;
     
-    displayWhoIsOnline();
-
 	//var session;
 
 	const print = function (log, skipID) {
@@ -164,9 +163,11 @@ wss.on( 'connection', function (ws) {
 		messageBus.removeListener( 'message', wsListener );
 		print( client.name + 'disconnected' );
 		delete clients[ id ];
+        displayWhoIsOnline();
 	});
 
 	print( 'connected' );
+    displayWhoIsOnline();
 });
 
 function displayWhoIsOnline() {
@@ -175,9 +176,14 @@ function displayWhoIsOnline() {
 		names.push( clients[ id ].name );
 	}
 
-	if (names.length) {
-		console.log( time() + ' ONLINE: ' + names.join( ', ' ) );
-	}
+    if (names.length > DISPLAY_NAMES_MAX_COUNT) {
+        let total = names.length;
+        names.length = DISPLAY_NAMES_MAX_COUNT;
+        console.log( time() + ' ONLINE: ' + names.join( ', ' ) + ', and ' + (total - DISPLAY_NAMES_MAX_COUNT) + ' more' );
+    }
+    else {
+        console.log( time() + ' ONLINE: ' + (names.length ? names.join( ', ' ) : 'nobody' ) );
+    }
 }
 
 function time() {
